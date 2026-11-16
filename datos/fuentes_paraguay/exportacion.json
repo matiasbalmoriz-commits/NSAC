@@ -1,0 +1,9 @@
+{
+  "project": "mapbiomes-para-nsac",
+  "year": 2023,
+  "tile": 128,
+  "bbox": null,
+  "min_caudal": 1.0,
+  "min_lago_km2": 1.0,
+  "limite": "C:\\Users\\franc\\OneDrive\\Documentos\\ChatGPT\\nsac\\datos\\fuentes_paraguay\\natural_earth_v5.1.2.geojson"
+}

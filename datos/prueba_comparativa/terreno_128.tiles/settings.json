@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "project": "mapbiomes-para-nsac",
+  "year": 2023,
+  "bbox": [
+    -61.05447307826196,
+    -20.82272372607574,
+    -60.736106571437126,
+    -20.565759410254465
+  ],
+  "tile": 128,
+  "eco": true,
+  "grid": [
+    120.0,
+    0.0,
+    -5890920.0,
+    0.0,
+    -120.0,
+    -2569080.0
+  ],
+  "shape": [
+    256,
+    256
+  ],
+  "bands": [
+    "elevation_m",
+    "land_cover",
+    "ls_red",
+    "ls_nir",
+    "ls_swir1",
+    "ndvi",
+    "ndmi",
+    "ls_valid_scenes",
+    "soil_ph_10cm",
+    "soil_texture_10cm",
+    "era_t2m_c",
+    "era_precip_mm",
+    "era_soil_water",
+    "pml_et_mm_d",
+    "pml_ec_mm_d",
+    "pml_es_mm_d",
+    "pml_ei_mm_d",
+    "pml_ew_mm_d",
+    "eco_lst_c",
+    "eco_valid_scenes"
+  ],
+  "assets": {
+    "srtm": "USGS/SRTMGL1_003",
+    "mapbiomas": "projects/mapbiomas-public/assets/paraguay/collection2/mapbiomas_paraguay_collection2_integration_v1",
+    "landsat8": "LANDSAT/LC08/C02/T1_L2",
+    "landsat9": "LANDSAT/LC09/C02/T1_L2",
+    "ph": "OpenLandMap/SOL/SOL_PH-H2O_USDA-4C1A2A_M/v02",
+    "texture": "OpenLandMap/SOL/SOL_TEXTURE-CLASS_USDA-TT_M/v02",
+    "era": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+    "pml": "projects/pml_evapotranspiration/PML/OUTPUT/PML_V22a",
+    "eco": "NASA/ECOSTRESS/L2T_LSTE/V2",
+    "boundary": "FAO/GAUL/2015/level0"
+  }
+}

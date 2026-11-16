@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Analizador GeoTIFF · Paraguay</title>
+  <link rel="stylesheet" href="./style.css"><script src="./app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">PARAGUAY / ANÁLISIS TERRITORIAL</p><h1>Explora tu GeoTIFF</h1>
+      <p>Selecciona dos esquinas y consulta los datos del rectángulo.</p></header>
+    <section class="panel" aria-labelledby="archivo-titulo"><h2 id="archivo-titulo">Archivo conectado</h2><p id="archivo">Conectando con el servidor…</p><div id="avisos"></div></section>
+    <div class="layout">
+      <section class="panel"><h2>Área de consulta</h2>
+        <p>Arrastra sobre la vista o escribe las coordenadas en grados decimales (WGS84).</p>
+        <canvas id="vista" width="900" height="480" aria-label="Vista previa del GeoTIFF; usa los campos para seleccionar con teclado"></canvas>
+        <p id="vista-estado" class="caption" role="status"></p>
+        <p id="extension" class="caption"></p>
+      </section>
+      <section class="panel"><h2>Esquinas del rectángulo</h2>
+        <form id="formulario">
+          <fieldset><legend>Posición 1</legend>
+            <label>Longitud<input id="lon1" type="number" min="-180" max="180" step="any" required placeholder="-57.65"></label>
+            <label>Latitud<input id="lat1" type="number" min="-89.999999" max="89.999999" step="any" required placeholder="-25.35"></label>
+          </fieldset>
+          <fieldset><legend>Posición 2</legend>
+            <label>Longitud<input id="lon2" type="number" min="-180" max="180" step="any" required placeholder="-57.60"></label>
+            <label>Latitud<input id="lat2" type="number" min="-89.999999" max="89.999999" step="any" required placeholder="-25.30"></label>
+          </fieldset>
+          <button id="analizar" disabled>Analizar rectángulo</button>
+        </form>
+        <p id="estado" role="status" aria-live="polite">Esperando el archivo…</p>
+      </section>
+    </div>
+    <section id="resultados" class="panel" hidden aria-labelledby="resultados-titulo">
+      <div class="result-header"><div><h2 id="resultados-titulo">Resultados</h2><p id="resumen"></p></div><button id="descargar" class="secondary" type="button">Descargar JSON</button></div>
+      <p id="consulta" class="caption"></p><div id="notas"></div>
+      <div class="table-wrap"><table><thead><tr><th>Banda / fuente</th><th>Unidad</th><th>Válidos</th><th>Sin datos</th><th>Cobertura</th><th>Mínimo</th><th>Media</th><th>Máximo</th><th>Desv. estándar</th></tr></thead><tbody id="bandas"></tbody></table></div>
+      <h3>Distribución de clases</h3><p class="caption">Porcentaje sobre píxeles válidos de cada banda. Los códigos conservan la leyenda original del producto.</p><div id="clases" class="class-grid"></div>
+    </section>
+  </main>
+</body></html>

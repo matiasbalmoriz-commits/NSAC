@@ -1,0 +1,15 @@
+{
+  "boundary_source": "Natural Earth (GeoJSON local)",
+  "boundary_file": "C:\\Users\\franc\\OneDrive\\Documentos\\ChatGPT\\nsac\\datos\\fuentes_paraguay\\natural_earth_v5.1.2.geojson",
+  "rivers_asset": "WWF/HydroSHEDS/v1/FreeFlowingRivers",
+  "lakes_asset": "projects/sat-io/open-datasets/HydroLakes/lake_poly_v10",
+  "min_caudal_m3_s": 1.0,
+  "min_lago_km2": 1.0,
+  "counts": {
+    "limite_paraguay": 1,
+    "rios": 5554,
+    "lagos": 53
+  },
+  "crs": "EPSG:4326",
+  "notes": "Caudal medio modelado. Lagos y embalses completos que intersectan Paraguay."
+}

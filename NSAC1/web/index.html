@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoVision · Paraguay</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/mapa.js" defer></script>
+  <script src="/app.js" defer></script>
+  <script src="/plugins.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner"><strong>GeoVision</strong></div>
+  </header>
+  <main>
+    <header class="intro">
+      <h1>Suelos y cultivos de Paraguay</h1>
+      <p id="archivo">Conectando con el GeoTIFF…</p>
+      <div id="avisos"></div>
+    </header>
+
+    <div class="workspace">
+      <section class="panel mapa-panel" aria-labelledby="mapa-titulo">
+        <div class="panel-header">
+          <h2 id="mapa-titulo">Mapa de cobertura</h2>
+          <div class="modo" aria-label="Herramientas del mapa">
+            <button id="explorar" type="button" aria-pressed="true">Explorar</button>
+            <button id="dibujar" type="button" aria-pressed="false">Dibujar área</button>
+          </div>
+        </div>
+        <div class="mapa">
+          <canvas id="vista" tabindex="0" aria-label="Mapa de cobertura de Paraguay" aria-describedby="ayuda-mapa"></canvas>
+          <div class="zoom" aria-label="Controles de zoom">
+            <button id="acercar" type="button" aria-label="Acercar">+</button>
+            <button id="alejar" type="button" aria-label="Alejar">−</button>
+            <button id="restablecer" type="button" aria-label="Restablecer vista" title="Restablecer vista">⌂</button>
+          </div>
+          <output id="coordenada" class="coordenada"></output>
+        </div>
+        <p id="ayuda-mapa" class="caption">Arrastra para desplazarte y haz clic para consultar una celda. Usa +, − y las flechas con el teclado.</p>
+        <div id="leyenda-panel" class="leyenda" hidden>
+          <h3>Uso y cobertura del suelo <span id="anio-mapa"></span></h3>
+          <ul id="leyenda"></ul>
+          <div id="leyenda-agricultura" class="leyenda-grupo" hidden>
+            <h4>Zonas disponibles para agricultura</h4>
+            <ul id="leyenda-coberturas-agricolas"></ul>
+            <p class="caption">Los pastizales naturales e inundables se identifican para su conservación.</p>
+          </div>
+          <div id="leyenda-fuentes" class="leyenda-fuentes">
+            <a id="fuente" hidden target="_blank" rel="noopener">Leyenda oficial de MapBiomas Paraguay</a>
+          </div>
+        </div>
+        <div id="cultivos-leyenda" class="leyenda" hidden>
+          <div class="capas-encabezado">
+            <h3 id="cultivos-leyenda-titulo">Cultivos sugeridos por zona</h3>
+            <label class="interruptor"><input id="mostrar-cultivos" type="checkbox"> Mostrar cultivos recomendados</label>
+            <button id="acercar-cultivos" class="secundario" type="button">Acercar a la zona</button>
+          </div>
+          <ul id="cultivos-colores"></ul>
+          <p id="cultivos-mapa-resumen" class="caption"></p>
+          <p id="cultivos-mapa-predominante" class="caption" hidden></p>
+          <ul id="cultivos-mapa-notas" class="notas-mapa"></ul>
+        </div>
+        <details id="catalogo-colores" class="leyenda catalogo-colores" hidden>
+          <summary>Colores de los 20 cultivos</summary>
+          <ul id="paleta-cultivos"></ul>
+        </details>
+        <div id="restauracion-leyenda" class="leyenda" hidden>
+          <div class="capas-encabezado">
+            <h3>Restauración potencial</h3>
+            <label class="interruptor"><input id="mostrar-restauracion" type="checkbox" checked> Mostrar capa de restauración</label>
+          </div>
+          <ul>
+            <li><span class="muestra ribera" aria-hidden="true"></span> Junto al agua</li>
+            <li><span class="muestra corredor" aria-hidden="true"></span> Corredor potencial</li>
+            <li><span class="muestra ambas" aria-hidden="true"></span> Ambos criterios</li>
+          </ul>
+          <p id="restauracion-resumen" class="caption"></p>
+          <ul id="restauracion-notas" class="notas-mapa"></ul>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="panel side-panel" aria-labelledby="area-titulo">
+          <h2 id="area-titulo">Área de análisis</h2>
+          <p id="area-instruccion">Dibuja un rectángulo en el mapa o introduce las coordenadas.</p>
+          <form id="formulario">
+            <details id="coordenadas">
+              <summary>Coordenadas WGS84</summary>
+              <fieldset><legend>Esquina 1</legend>
+                <label>Longitud<input id="lon1" type="number" min="-180" max="180" step="any" required></label>
+                <label>Latitud<input id="lat1" type="number" min="-89.999999" max="89.999999" step="any" required></label>
+              </fieldset>
+              <fieldset><legend>Esquina 2</legend>
+                <label>Longitud<input id="lon2" type="number" min="-180" max="180" step="any" required></label>
+                <label>Latitud<input id="lat2" type="number" min="-89.999999" max="89.999999" step="any" required></label>
+              </fieldset>
+            </details>
+            <div class="form-actions">
+              <button id="analizar" class="primario" disabled>Analizar área</button>
+              <button id="limpiar" type="button" class="secundario" disabled>Limpiar</button>
+            </div>
+          </form>
+          <p id="estado" class="caption" role="status" aria-live="polite">Cargando el mapa…</p>
+        </section>
+
+        <section id="analisis-avanzados" class="panel side-panel" aria-labelledby="analisis-avanzados-titulo" hidden>
+          <h2 id="analisis-avanzados-titulo">Análisis de cultivos</h2>
+          <fieldset id="sistema-cultivo" class="sistemas-cultivo">
+            <legend>Sistema de cultivo</legend>
+            <div class="opcion-sistema">
+              <label><input type="radio" name="sistema-cultivo" value="monocultivo"> Monocultivo</label>
+            </div>
+            <div class="opcion-sistema">
+              <label><input type="radio" name="sistema-cultivo" value="rotacion" checked> Rotación <span class="recomendada">Recomendada</span></label>
+              <span id="ayuda-rotacion" class="ayuda-rotacion">
+                <button id="porque-rotacion" type="button" aria-label="Por qué se recomienda la rotación" aria-describedby="explicacion-rotacion">?</button>
+                <span id="explicacion-rotacion" class="explicacion-rotacion" role="tooltip">Alternar familias de cultivos ayuda a interrumpir ciclos de plagas y enfermedades. Combinar especies con distintas raíces y dejar cobertura entre campañas también ayuda a cuidar el suelo.</span>
+              </span>
+            </div>
+          </fieldset>
+          <div class="acciones-area">
+            <button id="ejecutar-cultivos" type="button" class="primario">Analizar cultivos</button>
+            <p id="cultivos-estado" class="caption" role="status"></p>
+            <div class="enlaces-resultados">
+              <a id="ver-mapa-cultivos" href="#mapa-titulo" hidden>Ver mapa de cultivos</a>
+              <a id="ver-cultivos" href="#cultivos-titulo" hidden>Ver resultados de cultivos</a>
+            </div>
+          </div>
+          <div class="acciones-area">
+            <button id="ejecutar-restauracion" type="button" class="secundario">Mostrar zonas de restauración</button>
+            <p id="restauracion-estado" class="caption" role="status"></p>
+          </div>
+        </section>
+
+        <details id="plugins-panel" class="panel side-panel">
+          <summary>Herramientas opcionales</summary>
+          <p id="plugins-estado" class="caption" role="status" aria-live="polite"></p>
+          <div id="plugins-lista" class="plugins-lista"></div>
+        </details>
+
+        <section class="panel side-panel" aria-labelledby="nemotron-titulo">
+          <h2 id="nemotron-titulo">Configurar Nemotron</h2>
+          <p id="nemotron-estado" class="caption" role="status">Consultando la configuración…</p>
+          <form id="nemotron-formulario" class="nemotron-formulario" method="post" autocomplete="off" hidden>
+            <label for="nemotron-clave">Clave de API de NVIDIA</label>
+            <input id="nemotron-clave" type="password" autocomplete="off" autocapitalize="none" spellcheck="false"
+                   maxlength="1024" aria-describedby="nemotron-ayuda" required>
+            <p id="nemotron-ayuda" class="caption">La clave se mantiene en el servidor local hasta que lo reinicies.</p>
+            <div class="form-actions">
+              <button id="nemotron-guardar" class="primario" type="submit" disabled>Guardar clave</button>
+              <button id="nemotron-borrar" class="secundario" type="button" hidden>Quitar clave</button>
+            </div>
+          </form>
+          <div class="form-actions">
+            <button id="nemotron-probar" class="secundario" type="button">Probar conexión</button>
+          </div>
+          <p class="caption">Envía una consulta breve para comprobar la API, la clave y el modelo.</p>
+          <p id="nemotron-conexion" class="caption" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="panel side-panel" aria-labelledby="celda-titulo">
+          <h2 id="celda-titulo">Consulta por celda</h2>
+          <p id="celda-estado" class="caption" role="status">Haz clic en el mapa en modo Explorar. Con teclado, pulsa Intro para consultar el centro.</p>
+          <div id="celda" hidden>
+            <p id="celda-clase" class="celda-clase"></p>
+            <details><summary>Valores de las bandas</summary><dl id="celda-valores" class="valores"></dl></details>
+          </div>
+        </section>
+
+      </aside>
+    </div>
+
+    <section id="resultados" class="panel resultados" hidden aria-labelledby="resultados-titulo">
+      <header class="result-header">
+        <div><h2 id="resultados-titulo">Resultados del área</h2><p id="resumen"></p></div>
+        <div class="descargas">
+          <button id="descargar" class="secundario" type="button">Descargar JSON</button>
+          <button id="descargar-tiff" class="primario" type="button">Descargar recorte GeoTIFF</button>
+        </div>
+      </header>
+      <p id="exportacion-estado" class="caption" role="status"></p>
+      <div id="cobertura-resumen" hidden>
+        <h3>Cobertura y uso del suelo</h3>
+        <p id="cobertura-valida" class="caption"></p>
+        <ul id="distribucion" class="distribucion"></ul>
+      </div>
+      <section id="cultivos" class="cultivos" hidden aria-labelledby="cultivos-titulo">
+        <h3 id="cultivos-titulo" tabindex="-1">Análisis de cultivos</h3>
+        <p id="cultivos-alcance" class="caption"></p>
+        <div id="manejo-rotacion" class="manejo-panel" hidden>
+          <h4>Secuencia de rotación sugerida</h4>
+          <ol id="cultivos-rotacion" class="rotacion-pasos"></ol>
+        </div>
+        <section id="ranking-monocultivo" class="resumen-monocultivo" aria-labelledby="ranking-area-titulo" hidden>
+          <h4 id="ranking-area-titulo">Ranking de monocultivo</h4>
+          <p class="caption">Nemotron selecciona los candidatos. Los cinco mejores se ordenan por grupos asignados en el mapa. En caso de empate, se prioriza el cultivo con menos grupos condicionados y luego se usa el orden de Nemotron.</p>
+          <div class="ranking-grid">
+            <div>
+              <h5>5 mejores · del más al menos recomendado</h5>
+              <ol id="cultivos-aptos" class="ranking"></ol>
+            </div>
+            <div>
+              <h5>5 peores · del peor al menos desfavorable</h5>
+              <ol id="cultivos-no-aptos" class="ranking ranking-limitado"></ol>
+            </div>
+          </div>
+        </section>
+        <div class="manejo-panel">
+          <h4>Datos por verificar en campo</h4>
+          <ul id="cultivos-faltantes"></ul>
+        </div>
+      </section>
+      <details class="detalle-bandas">
+        <summary>Estadísticas por banda</summary>
+        <div id="notas"></div>
+        <div class="table-wrap">
+          <table><thead><tr><th scope="col">Banda</th><th scope="col">Unidad</th><th scope="col">Válidos</th><th scope="col">Sin datos</th><th scope="col">Cobertura</th><th scope="col">Mínimo</th><th scope="col">Media</th><th scope="col">Máximo</th><th scope="col">Desv. estándar</th></tr></thead><tbody id="bandas"></tbody></table>
+        </div>
+        <h3>Clases por banda</h3>
+        <div id="clases" class="class-grid"></div>
+      </details>
+    </section>
+  </main>
+</body>
+</html>

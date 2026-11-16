@@ -1,0 +1,595 @@
+{
+  "year": 2023,
+  "bbox_lon_lat": null,
+  "crs": "EPSG:6933",
+  "transform": [
+    480.0,
+    0.0,
+    -6044640.0,
+    0.0,
+    -480.0,
+    -2415360.0
+  ],
+  "nodata": -9999.0,
+  "shape": [
+    2027,
+    1687
+  ],
+  "boundary_asset": "FAO/GAUL/2015/level0",
+  "mask_method": "pixel centers; GeoJSON boundary transformed locally from EPSG:4326 to EPSG:6933",
+  "download_groups": [
+    "base",
+    "landsat",
+    "ecostress"
+  ],
+  "candidate_scene_extent": "request grid rectangle; filtered again per download block",
+  "candidate_scenes_or_periods": {
+    "eco": 5684,
+    "era": 12,
+    "landsat8": 913,
+    "landsat9": 875,
+    "pml": 46
+  },
+  "source_sample_projections": {
+    "srtm": [
+      {
+        "band": "elevation",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.0002777777777777778,
+          0,
+          -180.0001388888889,
+          0,
+          -0.0002777777777777778,
+          60.00013888888889
+        ]
+      }
+    ],
+    "mapbiomas": [
+      {
+        "band": "classification_2023",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.00026949458523585647,
+          0,
+          -63.01591886570032,
+          0,
+          -0.00026949458523585647,
+          -18.856536128952875
+        ]
+      }
+    ],
+    "ph": [
+      {
+        "band": "b10",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.002083333,
+          0,
+          -180,
+          0,
+          -0.002083333,
+          87.37
+        ]
+      }
+    ],
+    "texture": [
+      {
+        "band": "b10",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.002083333,
+          0,
+          -180,
+          0,
+          -0.002083333,
+          87.37
+        ]
+      }
+    ],
+    "era": [
+      {
+        "band": "temperature_2m",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.1,
+          0,
+          -180.05,
+          0,
+          -0.1,
+          90.05
+        ]
+      },
+      {
+        "band": "total_precipitation_sum",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.1,
+          0,
+          -180.05,
+          0,
+          -0.1,
+          90.05
+        ]
+      },
+      {
+        "band": "volumetric_soil_water_layer_1",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.1,
+          0,
+          -180.05,
+          0,
+          -0.1,
+          90.05
+        ]
+      }
+    ],
+    "pml": [
+      {
+        "band": "ET",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.004166666666666667,
+          0,
+          -180,
+          0,
+          -0.004166666666666667,
+          89
+        ]
+      },
+      {
+        "band": "Ec",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.004166666666666667,
+          0,
+          -180,
+          0,
+          -0.004166666666666667,
+          89
+        ]
+      },
+      {
+        "band": "Es",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.004166666666666667,
+          0,
+          -180,
+          0,
+          -0.004166666666666667,
+          89
+        ]
+      },
+      {
+        "band": "Ei",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.004166666666666667,
+          0,
+          -180,
+          0,
+          -0.004166666666666667,
+          89
+        ]
+      },
+      {
+        "band": "Ew",
+        "crs": "EPSG:4326",
+        "transform": [
+          0.004166666666666667,
+          0,
+          -180,
+          0,
+          -0.004166666666666667,
+          89
+        ]
+      }
+    ],
+    "landsat8": [
+      {
+        "band": "SR_B4",
+        "crs": "EPSG:32722",
+        "transform": [
+          30,
+          0,
+          147885,
+          0,
+          -30,
+          7238215
+        ]
+      },
+      {
+        "band": "SR_B5",
+        "crs": "EPSG:32722",
+        "transform": [
+          30,
+          0,
+          147885,
+          0,
+          -30,
+          7238215
+        ]
+      },
+      {
+        "band": "SR_B6",
+        "crs": "EPSG:32722",
+        "transform": [
+          30,
+          0,
+          147885,
+          0,
+          -30,
+          7238215
+        ]
+      },
+      {
+        "band": "QA_PIXEL",
+        "crs": "EPSG:32722",
+        "transform": [
+          30,
+          0,
+          147885,
+          0,
+          -30,
+          7238215
+        ]
+      },
+      {
+        "band": "QA_RADSAT",
+        "crs": "EPSG:32722",
+        "transform": [
+          30,
+          0,
+          147885,
+          0,
+          -30,
+          7238215
+        ]
+      }
+    ],
+    "landsat9": [
+      {
+        "band": "SR_B4",
+        "crs": "EPSG:32622",
+        "transform": [
+          30,
+          0,
+          145485,
+          0,
+          -30,
+          -2762085
+        ]
+      },
+      {
+        "band": "SR_B5",
+        "crs": "EPSG:32622",
+        "transform": [
+          30,
+          0,
+          145485,
+          0,
+          -30,
+          -2762085
+        ]
+      },
+      {
+        "band": "SR_B6",
+        "crs": "EPSG:32622",
+        "transform": [
+          30,
+          0,
+          145485,
+          0,
+          -30,
+          -2762085
+        ]
+      },
+      {
+        "band": "QA_PIXEL",
+        "crs": "EPSG:32622",
+        "transform": [
+          30,
+          0,
+          145485,
+          0,
+          -30,
+          -2762085
+        ]
+      },
+      {
+        "band": "QA_RADSAT",
+        "crs": "EPSG:32622",
+        "transform": [
+          30,
+          0,
+          145485,
+          0,
+          -30,
+          -2762085
+        ]
+      }
+    ],
+    "eco": [
+      {
+        "band": "LST",
+        "crs": "EPSG:32721",
+        "transform": [
+          70,
+          0,
+          399960,
+          0,
+          -70,
+          7700020
+        ]
+      },
+      {
+        "band": "QC",
+        "crs": "EPSG:32721",
+        "transform": [
+          70,
+          0,
+          399960,
+          0,
+          -70,
+          7700020
+        ]
+      },
+      {
+        "band": "cloud",
+        "crs": "EPSG:32721",
+        "transform": [
+          70,
+          0,
+          399960,
+          0,
+          -70,
+          7700020
+        ]
+      },
+      {
+        "band": "water",
+        "crs": "EPSG:32721",
+        "transform": [
+          70,
+          0,
+          399960,
+          0,
+          -70,
+          7700020
+        ]
+      }
+    ]
+  },
+  "ecostress_requested": true,
+  "ecostress_exported": true,
+  "bands": [
+    {
+      "name": "elevation_m",
+      "asset": "USGS/SRTMGL1_003",
+      "original": "elevation",
+      "unit": "m",
+      "native_m": 30,
+      "operation": "media espacial",
+      "kind": "continuous",
+      "valid_pixels": 1733384,
+      "band": 1
+    },
+    {
+      "name": "land_cover",
+      "asset": "projects/mapbiomas-public/assets/paraguay/collection2/mapbiomas_paraguay_collection2_integration_v1",
+      "original": "classification_2023",
+      "unit": "clase",
+      "native_m": 30,
+      "operation": "moda ponderada por solape a 480 m; código 0 excluido",
+      "kind": "category",
+      "valid_pixels": 1733143,
+      "band": 2
+    },
+    {
+      "name": "ls_red",
+      "asset": "LANDSAT/LC08/C02/T1_L2",
+      "original": "SR_B4",
+      "unit": "1",
+      "native_m": 30,
+      "operation": "DN*0.0000275-0.2; vecino más cercano por escena y mediana temporal",
+      "kind": "continuous",
+      "additional_asset": "LANDSAT/LC09/C02/T1_L2",
+      "valid_pixels": 1733384,
+      "band": 3
+    },
+    {
+      "name": "ls_nir",
+      "asset": "LANDSAT/LC08/C02/T1_L2",
+      "original": "SR_B5",
+      "unit": "1",
+      "native_m": 30,
+      "operation": "DN*0.0000275-0.2; vecino más cercano por escena y mediana temporal",
+      "kind": "continuous",
+      "additional_asset": "LANDSAT/LC09/C02/T1_L2",
+      "valid_pixels": 1733384,
+      "band": 4
+    },
+    {
+      "name": "ls_swir1",
+      "asset": "LANDSAT/LC08/C02/T1_L2",
+      "original": "SR_B6",
+      "unit": "1",
+      "native_m": 30,
+      "operation": "DN*0.0000275-0.2; vecino más cercano por escena y mediana temporal",
+      "kind": "continuous",
+      "additional_asset": "LANDSAT/LC09/C02/T1_L2",
+      "valid_pixels": 1733384,
+      "band": 5
+    },
+    {
+      "name": "ndvi",
+      "asset": "LANDSAT/LC08/C02/T1_L2",
+      "original": "SR_B5,SR_B4",
+      "unit": "1",
+      "native_m": 30,
+      "operation": "(NIR-rojo)/(NIR+rojo); vecino más cercano por escena y mediana temporal",
+      "kind": "continuous",
+      "additional_asset": "LANDSAT/LC09/C02/T1_L2",
+      "valid_pixels": 1733384,
+      "band": 6
+    },
+    {
+      "name": "ndmi",
+      "asset": "LANDSAT/LC08/C02/T1_L2",
+      "original": "SR_B5,SR_B6",
+      "unit": "1",
+      "native_m": 30,
+      "operation": "(NIR-SWIR1)/(NIR+SWIR1); vecino más cercano por escena y mediana temporal",
+      "kind": "continuous",
+      "additional_asset": "LANDSAT/LC09/C02/T1_L2",
+      "valid_pixels": 1733384,
+      "band": 7
+    },
+    {
+      "name": "ls_valid_scenes",
+      "asset": "LANDSAT/LC08/C02/T1_L2",
+      "original": "QA_PIXEL,QA_RADSAT",
+      "unit": "escenas",
+      "native_m": 30,
+      "operation": "número de escenas con reflectancia válida en la celda",
+      "kind": "count",
+      "additional_asset": "LANDSAT/LC09/C02/T1_L2",
+      "valid_pixels": 1733384,
+      "band": 8
+    },
+    {
+      "name": "soil_ph_10cm",
+      "asset": "OpenLandMap/SOL/SOL_PH-H2O_USDA-4C1A2A_M/v02",
+      "original": "b10",
+      "unit": "pH",
+      "native_m": 250,
+      "operation": "DN/10; vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 1722037,
+      "band": 9
+    },
+    {
+      "name": "soil_texture_10cm",
+      "asset": "OpenLandMap/SOL/SOL_TEXTURE-CLASS_USDA-TT_M/v02",
+      "original": "b10",
+      "unit": "clase USDA",
+      "native_m": 250,
+      "operation": "vecino más cercano; clases 1–12",
+      "kind": "category",
+      "valid_pixels": 1722037,
+      "band": 10
+    },
+    {
+      "name": "era_t2m_c",
+      "asset": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+      "original": "temperature_2m",
+      "unit": "°C",
+      "native_m": 11132,
+      "operation": "K-273.15; media mensual ponderada por días; vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 1733384,
+      "band": 11
+    },
+    {
+      "name": "era_precip_mm",
+      "asset": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+      "original": "total_precipitation_sum",
+      "unit": "mm/año",
+      "native_m": 11132,
+      "operation": "suma de 12 acumulados mensuales *1000; negativos a cero; vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 1733384,
+      "band": 12
+    },
+    {
+      "name": "era_soil_water",
+      "asset": "ECMWF/ERA5_LAND/MONTHLY_AGGR",
+      "original": "volumetric_soil_water_layer_1",
+      "unit": "m3/m3",
+      "native_m": 11132,
+      "operation": "media mensual ponderada por días (0–7 cm); vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 1733384,
+      "band": 13
+    },
+    {
+      "name": "pml_et_mm_d",
+      "asset": "projects/pml_evapotranspiration/PML/OUTPUT/PML_V22a",
+      "original": "ET",
+      "unit": "mm/día",
+      "native_m": 500,
+      "operation": "DN*0.01; media de tasas de composiciones; vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 1722744,
+      "band": 14
+    },
+    {
+      "name": "pml_ec_mm_d",
+      "asset": "projects/pml_evapotranspiration/PML/OUTPUT/PML_V22a",
+      "original": "Ec",
+      "unit": "mm/día",
+      "native_m": 500,
+      "operation": "DN*0.01; media de tasas de composiciones; vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 1722744,
+      "band": 15
+    },
+    {
+      "name": "pml_es_mm_d",
+      "asset": "projects/pml_evapotranspiration/PML/OUTPUT/PML_V22a",
+      "original": "Es",
+      "unit": "mm/día",
+      "native_m": 500,
+      "operation": "DN*0.01; media de tasas de composiciones; vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 1722744,
+      "band": 16
+    },
+    {
+      "name": "pml_ei_mm_d",
+      "asset": "projects/pml_evapotranspiration/PML/OUTPUT/PML_V22a",
+      "original": "Ei",
+      "unit": "mm/día",
+      "native_m": 500,
+      "operation": "DN*0.01; media de tasas de composiciones; vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 1722744,
+      "band": 17
+    },
+    {
+      "name": "pml_ew_mm_d",
+      "asset": "projects/pml_evapotranspiration/PML/OUTPUT/PML_V22a",
+      "original": "Ew",
+      "unit": "mm/día",
+      "native_m": 500,
+      "operation": "DN*0.01; media de tasas de composiciones; vecino más cercano",
+      "kind": "continuous",
+      "valid_pixels": 10640,
+      "band": 18
+    },
+    {
+      "name": "eco_lst_c",
+      "asset": "NASA/ECOSTRESS/L2T_LSTE/V2",
+      "original": "LST,QC,cloud,water",
+      "unit": "°C",
+      "native_m": 70,
+      "operation": "K-273.15; vecino más cercano por escena y mediana temporal",
+      "kind": "continuous",
+      "valid_pixels": 1679089,
+      "band": 19
+    },
+    {
+      "name": "eco_valid_scenes",
+      "asset": "NASA/ECOSTRESS/L2T_LSTE/V2",
+      "original": "LST,QC,cloud,water",
+      "unit": "escenas",
+      "native_m": 70,
+      "operation": "número de escenas válidas en la celda",
+      "kind": "count",
+      "valid_pixels": 1733384,
+      "band": 20
+    }
+  ]
+}

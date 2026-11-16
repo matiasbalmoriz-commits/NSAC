@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<qgis version="3.34" styleCategories="Symbology"><renderer-v2 type="singleSymbol" symbollevels="0"><symbols><symbol name="0" type="line" alpha="1"><layer class="SimpleLine" enabled="1" pass="0"><Option type="Map"><Option name="line_color" value="0,102,255,255" type="QString" /><Option name="line_width" value=".45" type="QString" /><Option name="line_width_unit" value="MM" type="QString" /><Option name="line_style" value="solid" type="QString" /></Option></layer></symbol></symbols></renderer-v2></qgis>
